@@ -1,8 +1,8 @@
 import ReactDOM from 'react-dom';
 
-import AppRoot from './components/AppRoot';
+import App from './components/App';
 
 ReactDOM.render(
-  AppRoot,
-  document.getElementById('app-root')
+  App,
+  document.getElementById('root')
 );
