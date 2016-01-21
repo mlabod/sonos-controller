@@ -11,16 +11,9 @@ const Todo = ({
   <li
     onClick={onClick}
     style={{
-      textDecoration:
-        completed ?
-          'line-through' :
-          'none'
+      textDecoration: completed ? 'line-through' : 'none'
     }}
-    className={
-        completed ?
-          'completed' :
-          ''
-    }
+    className={ completed ? 'completed' : '' }
     >
     {text}
   </li>
