@@ -12,12 +12,15 @@ let AddTodo = ({ dispatch }) => {
         input = node;
       }} />
       <button onClick={() => {
-        dispatch(addTodo(input.value));
-        input.value = '';
+        if(input.value !== '') {
+          dispatch(addTodo(input.value));
+          input.value = '';
+        }
       }}>
         Add Todo
       </button>
     </div>
   );
 };
+
 export default connect()(AddTodo);
