@@ -9,10 +9,8 @@ module.exports = {
   },
   module: {
     loaders: [
-      {
-        test: /\.html$/,
-        loader: "file?name=[name].[ext]"
-      },
+      {test: /\.html$/,loader: "file?name=[name].[ext]"},
+      {test: /\.styl$/,loader: 'style-loader!css-loader!stylus-loader'},
       {
         test: /\.js?$/,
         exclude: /node_modules/,
