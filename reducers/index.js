@@ -50,9 +50,9 @@ const visibilityFilter = (
   }
 };
 
-const todoApp = combineReducers({
+const reducers = combineReducers({
   todos,
   visibilityFilter
 });
 
-export default todoApp
+export default reducers
