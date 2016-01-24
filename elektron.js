@@ -15,7 +15,8 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     width: 300,
     height: 300,
-    titleBarStyle:'hidden-inset'
+    titleBarStyle:'hidden-inset',
+    resizable:false
   });
 
   mainWindow.loadURL('file://' + __dirname + '/static/index.html');
