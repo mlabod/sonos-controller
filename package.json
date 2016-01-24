@@ -1,7 +1,7 @@
 
 {
-  "name": "redux-Webpack-test",
-  "version": "0.0.1",
+  "name": "soplay",
+  "version": "0.0.2",
   "main": "elektron.js",
   "devDependencies": {
     "babel-core": "6.3.26",
