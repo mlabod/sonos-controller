@@ -4,8 +4,29 @@ export const play = () => {
   };
 };
 
-export const stop = () => {
+export const pause = () => {
   return {
-    type: 'STOP'
+    type: 'PAUSE'
+  }
+}
+
+export const playNext = () => {
+  return {
+    type: 'NEXT'
   };
 };
+
+export const playPrev = () => {
+  return {
+    type: 'PREV'
+  };
+};
+
+export const songInfo = (data) => {
+  return {
+    type: 'INFO',
+    artist: data.artist,
+    title: data.title,
+    cover: data.albumArtURI
+  }
+}

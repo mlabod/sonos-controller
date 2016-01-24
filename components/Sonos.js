@@ -1,22 +1,39 @@
 import React from 'react';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
+import { play, pause, playPrev, playNext } from '../actions';
 
-export default () => {
+const Sonos = ({ track, playing, actions }) => {
 
   return (
     <div className="song">
-      <img className="song-cover" src="../src/cover.jpg"/>
+      <img className="song-cover" src={track.cover}/>
       <div className="song-meta">
+        <div className="song-title">{track.title}</div>
+        <div className="song-artist">{track.artist}</div>
         <div className="song-controls">
-          <div className="song-play">
-          <svg height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 0h48v48H0z" fill="none"/>
-            <path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm-4 29V15l12 9-12 9z" fill="white"/>
-          </svg>
-          </div>
+          <div className="song-prev" onClick={actions.playPrev}></div>
+          <div className={playing ? ' hidden' : 'song-play'}  onClick={actions.play}></div>
+          <div className={playing ? 'song-pause' : 'hidden'}  onClick={actions.pause}></div>
+          <div className="song-next" onClick={actions.playNext}></div>
         </div>
-        <div className="song-title">Two Worlds</div>
-        <div className="song-artist">FKA Twigs</div>
       </div>
     </div>
   );
 };
+
+const mapStateToProps = (state) => {
+  return {
+    track: state.track,
+    playing: state.playing
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return { actions: bindActionCreators({play, pause, playPrev, playNext}, dispatch) }
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Sonos);
