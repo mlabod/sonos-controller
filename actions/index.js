@@ -27,6 +27,6 @@ export const songInfo = (data) => {
     type: 'INFO',
     artist: data.artist,
     title: data.title,
-    cover: data.albumArtURI
+    cover: data.cover
   }
 }

@@ -30,7 +30,7 @@ const track = (state = {}, action) => {
       return {
         title: action.title,
         artist: action.artist,
-        cover: 'http://192.168.1.3:1400' + action.cover
+        cover: action.cover
       }
     default:
       return state;

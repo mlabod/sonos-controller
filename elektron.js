@@ -21,25 +21,19 @@ function createWindow () {
 
   mainWindow.loadURL('file://' + __dirname + '/static/index.html');
 
+  music.startListening(function (data) {
+    console.log(data);
+    setTimeout(function() {
+      mainWindow.webContents.send('info', data);
+    },100);
+  });
+
+  ipcMain.on('play', music.toggle);
+  ipcMain.on('skip', music.skip);
+
   mainWindow.on('closed', function() {
     mainWindow = null;
   });
-
-  ipcMain.on('play', function (ev, playing) {
-    console.log('onPlay', playing);
-    music.toggle(playing);
-  });
-
-  ipcMain.on('skip', function (ev, state) {
-    console.log('onSkip', state);
-    music.skip(state);
-  });
-
-  setInterval(function() {
-    music.getTrack(function (data) {
-      mainWindow && mainWindow.webContents.send('info', data);
-    });
-  }, 2000);
 }
 
 app.on('ready', createWindow);
