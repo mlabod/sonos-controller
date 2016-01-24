@@ -1,24 +1,29 @@
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import Sonos from './Sonos';
+import reducers from '../reducers';
+import { songInfo } from '../actions';
 
-import AddTodo from './AddTodo';
-import TodoList from './TodoList';
-import Footer from './Footer';
-import todoApp from '../reducers';
+const ipcRenderer = require('electron').ipcRenderer;
 
-let store = createStore(todoApp)
+let store = createStore(reducers);
+let oldTitle;
 
-const TodoApp = () => (
+ipcRenderer.on('info', function(err, data) {
+  if(data.title === oldTitle) return;
+  store.dispatch(songInfo(data));
+  oldTitle = data.title;
+});
+
+const SonosApp = () => (
   <div>
-    <AddTodo />
-    <TodoList />
-    <Footer />
+    <Sonos />
   </div>
 );
 
 export default (
   <Provider store={store}>
-    <TodoApp />
+    <SonosApp />
   </Provider>
 )

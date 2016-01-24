@@ -1,58 +1,41 @@
 import { combineReducers } from 'redux';
+const ipcRenderer = require('electron').ipcRenderer;
 
-const todo = (state, action) => {
+const playing = (state = true, action) => {
+
   switch (action.type) {
-    case 'ADD_TODO':
+    case 'PLAY':
+      ipcRenderer.send('play', true);
+      return true;
+    case 'PAUSE':
+      ipcRenderer.send('play', false);
+      return false;
+    case 'NEXT':
+      ipcRenderer.send('skip', 'next');
+    case 'PREV':
+      ipcRenderer.send('skip', 'prev');
+    default:
+      return state;
+  }
+};
+
+const track = (state = {}, action) => {
+
+  switch (action.type) {
+    case 'INFO':
       return {
-        id: action.id,
-        text: action.text,
-        completed: false
-      };
-    case 'TOGGLE_TODO':
-      if (state.id !== action.id) {
-        return state;
+        title: action.title,
+        artist: action.artist,
+        cover: 'http://192.168.1.3:1400' + action.cover
       }
-
-      return {
-        ...state,
-        completed: !state.completed
-      };
     default:
       return state;
   }
 };
 
-const todos = (state = [], action) => {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return [
-        ...state,
-        todo(undefined, action)
-      ];
-    case 'TOGGLE_TODO':
-      return state.map(t =>
-          todo(t, action)
-      );
-    default:
-      return state;
-  }
-};
-
-const visibilityFilter = (
-  state = 'SHOW_ALL',
-  action
-) => {
-  switch (action.type) {
-    case 'SET_VISIBILITY_FILTER':
-      return action.filter;
-    default:
-      return state;
-  }
-};
-
-const todoApp = combineReducers({
-  todos,
-  visibilityFilter
+const reducers = combineReducers({
+  playing,
+  track
 });
 
-export default todoApp
+export default reducers

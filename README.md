@@ -1,13 +1,10 @@
-# Testing w/ React Redux Webpack
+# Small Sonos controller with Electron
 
 ## Dependencies
 
     npm install
 
-## Build
-
-    make build
-
 ## Dev
 
-    make start
+    make watch
+    electron .

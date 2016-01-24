@@ -1,23 +1,32 @@
-let nextTodoId = 0;
-
-export const addTodo = (text) => {
+export const play = () => {
   return {
-    type: 'ADD_TODO',
-    id: nextTodoId++,
-    text
+    type: 'PLAY'
   };
 };
 
-export const toggleTodo = (id) => {
+export const pause = () => {
   return {
-    type: 'TOGGLE_TODO',
-    id
+    type: 'PAUSE'
+  }
+}
+
+export const playNext = () => {
+  return {
+    type: 'NEXT'
   };
 };
 
-export const setVisibilityFilter = (filter) => {
+export const playPrev = () => {
   return {
-    type: 'SET_VISIBILITY_FILTER',
-    filter
+    type: 'PREV'
   };
 };
+
+export const songInfo = (data) => {
+  return {
+    type: 'INFO',
+    artist: data.artist,
+    title: data.title,
+    cover: data.albumArtURI
+  }
+}

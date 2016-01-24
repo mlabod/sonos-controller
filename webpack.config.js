@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 module.exports = {
   entry: {
     javascript: './app.js',
@@ -7,6 +9,13 @@ module.exports = {
     path: __dirname + "/static",
     filename: "app.js"
   },
+  plugins: [
+    new webpack.ExternalsPlugin('commonjs', [
+      'electron',
+      'ipc',
+      'ipc-renderer'
+    ])
+  ],
   module: {
     loaders: [
       {test: /\.html$/,loader: "file?name=[name].[ext]"},
