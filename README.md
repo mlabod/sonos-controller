@@ -2,9 +2,14 @@
 
 ## Dependencies
 
-    npm install
+```
+$ npm install
+```
 
-## Dev
+## Start
 
-    make watch
-    electron .
+
+```
+$ webpack
+$ electron .
+```
