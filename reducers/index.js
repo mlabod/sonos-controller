@@ -3,6 +3,8 @@ const ipcRenderer = require('electron').ipcRenderer;
 
 const playing = (state = true, action) => {
 
+  console.log(action.type);
+
   switch (action.type) {
     case 'PLAY':
       ipcRenderer.send('play', true);
@@ -12,8 +14,10 @@ const playing = (state = true, action) => {
       return false;
     case 'NEXT':
       ipcRenderer.send('skip', 'next');
+      return state;
     case 'PREV':
       ipcRenderer.send('skip', 'prev');
+      return state;
     default:
       return state;
   }
