@@ -21,11 +21,11 @@ function createWindow () {
 
   mainWindow.loadURL('file://' + __dirname + '/static/index.html');
 
-  music.startListening(function (data) {
-    console.log(data);
-    setTimeout(function() {
+  mainWindow.webContents.on('dom-ready', function () {
+    music.startListening(function (data) {
+      console.log(data);
       mainWindow.webContents.send('info', data);
-    },100);
+    });
   });
 
   ipcMain.on('play', music.toggle);
