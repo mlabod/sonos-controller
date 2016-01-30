@@ -24,9 +24,26 @@ export const playPrev = () => {
 
 export const songInfo = (data) => {
   return {
-    type: 'INFO',
+    type: 'SONG_INFO',
     artist: data.artist,
     title: data.title,
     cover: data.cover
+  }
+}
+
+export const switchRoom = (ip) => {
+
+  console.log('SWITCH');
+
+  return {
+    type: 'SWITCH_ROOM',
+    ip
+  }
+}
+
+export const roomInfo = (data) => {
+  return {
+    type: 'ROOM_INFO',
+    data: data
   }
 }

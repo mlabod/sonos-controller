@@ -1,9 +1,10 @@
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import Sonos from './Sonos';
+import CurrentSong from './CurrentSong';
+import RoomSwitcher from './RoomSwitcher';
 import reducers from '../reducers';
-import { songInfo } from '../actions';
+import { songInfo, roomInfo } from '../actions';
 
 const ipcRenderer = require('electron').ipcRenderer;
 
@@ -16,9 +17,14 @@ ipcRenderer.on('info', function(err, data) {
   oldTitle = data.title;
 });
 
+ipcRenderer.on('rooms', function(err, data) {
+  store.dispatch(roomInfo(data));
+});
+
 const SonosApp = () => (
   <div>
-    <Sonos />
+    <RoomSwitcher />
+    <CurrentSong />
   </div>
 );
 

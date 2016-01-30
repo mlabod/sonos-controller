@@ -22,9 +22,13 @@ function createWindow () {
   mainWindow.loadURL('file://' + __dirname + '/static/index.html');
 
   mainWindow.webContents.on('dom-ready', function () {
+
     music.startListening(function (data) {
-      console.log(data);
       mainWindow.webContents.send('info', data);
+    });
+
+    music.getRooms(function (data) {
+      mainWindow.webContents.send('rooms', data);
     });
   });
 

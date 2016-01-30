@@ -3,8 +3,6 @@ const ipcRenderer = require('electron').ipcRenderer;
 
 const playing = (state = true, action) => {
 
-  console.log(action.type);
-
   switch (action.type) {
     case 'PLAY':
       ipcRenderer.send('play', true);
@@ -23,10 +21,20 @@ const playing = (state = true, action) => {
   }
 };
 
-const track = (state = {}, action) => {
+const rooms = (state = [], action) => {
 
   switch (action.type) {
-    case 'INFO':
+    case 'ROOM_INFO':
+      return action.data
+    default:
+      return state;
+  }
+};
+
+const song = (state = {}, action) => {
+
+  switch (action.type) {
+    case 'SONG_INFO':
       return {
         title: action.title,
         artist: action.artist,
@@ -38,8 +46,9 @@ const track = (state = {}, action) => {
 };
 
 const reducers = combineReducers({
+  rooms,
   playing,
-  track
+  song
 });
 
 export default reducers

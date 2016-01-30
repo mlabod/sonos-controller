@@ -29,6 +29,35 @@ a
   opacity:0
   transition:200ms opacity
 
+  .select
+    position:absolute
+    right:7px
+    top:7px
+    z-index:0
+
+    &:after
+      position:absolute
+      right:0
+      height:24px
+      width:24px
+      content''
+      background:url('data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0xNi41OSA4LjU5TDEyIDEzLjE3IDcuNDEgOC41OSA2IDEwbDYgNiA2LTZ6Ii8+CiAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+Cjwvc3ZnPg==')
+
+    select
+      position:relative
+      z-index:1
+      color:white
+      padding: 5px 24px 5px 5px
+      border: none
+      box-shadow: none
+      background:none
+      -webkit-appearance: none
+      font-family:$fonts
+      font-size:12px
+
+      &:focus
+        outline: none
+
 body:hover
   .title-bar
     opacity:1
