@@ -2,3 +2,4 @@ node_modules
 static
 build
 .DS_Store
+npm-debug.log
