@@ -5,6 +5,8 @@ import { switchRoom } from '../actions';
 
 const RoomSwitcher = ({ rooms, switchRoom }) => {
 
+  console.log(rooms, switchRoom)
+
   return (
     <div className="title-bar">
       <div className="select">

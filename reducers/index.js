@@ -23,6 +23,8 @@ const playing = (state = true, action) => {
 
 const rooms = (state = [], action) => {
 
+  console.log(action)
+
   switch (action.type) {
     case 'ROOM_INFO':
       return action.data

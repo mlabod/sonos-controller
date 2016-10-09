@@ -23,11 +23,8 @@ function createWindow () {
 
   mainWindow.webContents.on('dom-ready', function () {
 
-    music.startListening(function (data) {
-      mainWindow.webContents.send('info', data);
-    });
-
     music.getRooms(function (data) {
+      console.log('HELLO THEE', data)
       mainWindow.webContents.send('rooms', data);
     });
   });
